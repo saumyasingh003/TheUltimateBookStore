@@ -7,7 +7,7 @@ function Banner() {
     <>
       <div className="max-w-screen-2xl container mx-auto lg:px-40 md:px-20 px-10 md:mt-20 flex flex-col md:flex-row">
         <div className="w-full order-2 md:order-1 md:w-1/2 mt-8 md:mt-24">
-          <div className="space-y-8">
+          <div className="space-y-8"> 
             <h1 className="text-2xl md:text-4xl font-bold">
               Hello, Welcomes here to learn something{" "}
               <span className="text-pink-500">New Everyday!!!</span>
