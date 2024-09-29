@@ -8,7 +8,7 @@ const Freebook = () => {
   useEffect(() => {
     const getBooks = async () => {
       try {
-        const res = await axios.get("http://localhost:4000/book");
+        const res = await axios.get("https://book-store-backend-ul1r.onrender.com/book");
         console.log(res.data);
         setBooks(res.data); // Update state with fetched books data
       } catch (error) {
