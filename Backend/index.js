@@ -13,8 +13,7 @@ app.use(express.json());
 
 const PORT = process.env.PORT || 3001;
 
-const mongoURI =
-  "mongodb+srv://saumyasingh98982:YUVzVqOuwX01avVe@bookstore.kaf3b.mongodb.net/?retryWrites=true&w=majority&appName=BookStore";
+const mongoURI =`${process.env.MONGO_URI}`;
 
 mongoose
   .connect(mongoURI)
