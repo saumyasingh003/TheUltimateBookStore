@@ -4,6 +4,7 @@ import Home from "./components/Home";
 import { Toaster } from 'react-hot-toast';
 import MoreBooks from "./components/MoreBooks";
 import SignUp from "./components/SignUp";
+import Cartpage from "./components/Cartpage";
 import Footer from "./components/Footer";
 import { useAuth } from "./context/Authprovider";
 
@@ -20,7 +21,7 @@ function App() {
             path="/MoreBooks"
             element={authUser ? <MoreBooks /> : <Navigate to="/signup" />}
           />
-
+            <Route path="/cartpage" element={<Cartpage />} />
         <Route path="/signup" element={<SignUp />} />
       </Routes>
       <Footer />

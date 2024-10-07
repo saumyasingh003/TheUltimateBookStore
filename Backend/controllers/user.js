@@ -1,5 +1,8 @@
 import User from "../modals/user.js";
 import bcryptjs from "bcryptjs";
+import  jwt from "jsonwebtoken"
+
+const JWT_SECRET = "BOOK_STORE"; 
 
 export const signup = async (req, res) => {
   try {
@@ -34,32 +37,38 @@ export const signup = async (req, res) => {
 
 
 
-
-
-
-
-
-
-
-
-
 export const login = async (req, res) => {
   try {
     const { email, password } = req.body;
     const user = await User.findOne({ email });
-    const isMatch = await bcryptjs.compare(password, user.password);
-    if (!user || !isMatch) {
+    
+    // Check if user exists
+    if (!user) {
       return res.status(400).json({ message: "Invalid username or password" });
-    } else {
-      res.status(200).json({
-        message: "Loggedin Successfully!!",
-        user: {
-          _id: user._id,
-          fullname: user.fullname,
-          email: user.email,
-        },
-      });
     }
+
+    // Compare password
+    const isMatch = await bcryptjs.compare(password, user.password);
+    if (!isMatch) {
+      return res.status(400).json({ message: "Invalid username or password" });
+    }
+
+    // Generate JWT token
+    const token = jwt.sign(
+      { id: user._id, email: user.email }, 
+      JWT_SECRET, 
+      { expiresIn: "30d" } 
+    );
+
+    res.status(200).json({
+      message: "Logged in Successfully!!",
+      token, 
+      user: {
+        _id: user._id,
+        fullname: user.fullname,
+        email: user.email,
+      },
+    });
   } catch (error) {
     console.log("Error :" + error.message);
     res.status(500).json({ message: "Internal Server Error !!" });

@@ -19,13 +19,16 @@ const Login = () => {
     await axios
       .post("https://book-store-backend-ul1r.onrender.com/user/login", userInfo)
       .then((res) => {
-        console.log(res.data);
+        console.log(res);
         if (res.data) {
           toast.success("loggedin successfully!!");
           document.getElementById("login").close();
           setTimeout(() => {
             window.location.reload();
             localStorage.setItem("Users", JSON.stringify(res.data.user));
+            localStorage.setItem("token", res.data.token )
+            localStorage.setItem("userId", res.data.user._id )
+           
           }, 3000);
         }
       })

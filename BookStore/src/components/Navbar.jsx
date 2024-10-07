@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { FaShoppingCart } from "react-icons/fa";
 import Login from "./Login";
 import Logout from "./Logout";
 import books from "../components/assets/books.png";
@@ -51,15 +52,15 @@ function Navbar() {
         </a>
       </li>
       <li>
-        <a className={`text-${theme === "dark" ? "white" : "black"}`}>About</a>
-      </li>
-      <li>
         <a
           href="/MoreBooks"
           className={`text-${theme === "dark" ? "white" : "black"}`}
         >
           More Books..
         </a>
+      </li>
+      <li>
+        <a  href="/cartpage" className={`text-${theme === "dark" ? "white" : "black"}`}><FaShoppingCart className="w-6 h-6 text-gray-600" /></a>
       </li>
     </>
   );

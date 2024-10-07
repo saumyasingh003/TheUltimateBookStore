@@ -14,6 +14,10 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  likedBooks: [
+    { type: mongoose.Schema.Types.ObjectId,
+     ref: "Book"
+    }]
 });
 const User = mongoose.model("User", userSchema);
 
